@@ -23,7 +23,7 @@ package "Interfaces" {
 }
 
 package "Implementations" {
-  class Human implements Workable, Eatable, Sleepable, Payable {
+  class Human {
     - name: String
     - salary: double
     --
@@ -33,19 +33,29 @@ package "Implementations" {
     + getSalary(): double
   }
 
-  class Robot implements Workable {
+  class Robot {
     - model: String
     --
     + work(): void
   }
 
-  class Animal implements Eatable, Sleepable {
+  class Animal {
     - species: String
     --
     + eat(): void
     + sleep(): void
   }
 }
+
+Human ..|> Workable
+Human ..|> Eatable
+Human ..|> Sleepable
+Human ..|> Payable
+
+Robot ..|> Workable
+
+Animal ..|> Eatable
+Animal ..|> Sleepable
 
 note bottom of Workable
   ✅ Małe, spójne interfejsy
