@@ -1,44 +1,53 @@
 @startuml lsp_rectangle_problem
-@enduml
-
-end note
-  ❌ FAIL dla Square (area = 16)
-  ✅ Działa dla Rectangle
-
-  }
-      assert r.getArea() == 20;
-      r.setHeight(4);
-      r.setWidth(5);
-  void testRectangle(Rectangle r) {
-note bottom of Rectangle
-
-end note
-  Narusza kontrakt Rectangle
-  ❌ PROBLEM: Zmienia oba wymiary!
-
-  }
-      this.height = width; // ❌
-      this.width = width;
-  public void setWidth(int width) {
-  @Override
-note right of Square::setWidth
-
-}
-  + setHeight(int): void
-  + setWidth(int): void
-class Square extends Rectangle {
-
-}
-  + getArea(): int
-  + setHeight(int): void
-  + setWidth(int): void
-  --
-  # height: int
-  # width: int
-class Rectangle {
+!theme plain
+skinparam classAttributeIconSize 0
 
 title Naruszenie LSP - Problem Rectangle/Square
 
-skinparam classAttributeIconSize 0
-!theme plain
+class Rectangle {
+  # width: int
+  # height: int
+  --
+  + setWidth(int): void
+  + setHeight(int): void
+  + getWidth(): int
+  + getHeight(): int
+  + getArea(): int
+}
+
+class Square extends Rectangle {
+  + setWidth(int): void
+  + setHeight(int): void
+}
+
+note right of Square::setWidth
+  @Override
+  public void setWidth(int width) {
+      this.width = width;
+      this.height = width; // ❌
+  }
+
+  ❌ PROBLEM: Zmienia oba wymiary!
+  Narusza kontrakt Rectangle
+end note
+
+note bottom of Rectangle
+  void testRectangle(Rectangle r) {
+      r.setWidth(5);
+      r.setHeight(4);
+      assert r.getArea() == 20;
+  }
+
+  ✅ Dziala dla Rectangle
+  ❌ FAIL dla Square (area = 16)
+end note
+
+note bottom of Square
+  ❌ Naruszenie LSP:
+  • Square nie jest podstawialny za Rectangle
+  • Zmienia zachowanie metod z klasy bazowej
+  • Kontrakt setWidth() jest zlamany
+end note
+
+@enduml
 

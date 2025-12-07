@@ -1,4 +1,4 @@
-// Proste demo OCP - bez pakietów
+package solid;// Proste demo OCP - bez pakietów
 
 public class SimpleOcpDemo {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-// Proste demo SRP - bez pakietów dla łatwego testowania
+package solid;// Proste demo SRP - bez pakietów dla łatwego testowania
 
 public class SimpleSrpDemo {
     public static void main(String[] args) {

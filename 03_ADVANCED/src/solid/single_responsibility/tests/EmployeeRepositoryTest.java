@@ -1,5 +1,7 @@
-package solid.single_responsibility.after;
+package solid.single_responsibility.tests;
 
+import solid.single_responsibility.after.Employee;
+import solid.single_responsibility.after.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;

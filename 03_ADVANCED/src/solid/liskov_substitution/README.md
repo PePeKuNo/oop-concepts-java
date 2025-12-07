@@ -186,6 +186,46 @@ public class Penguin extends Bird {
 
 ![Rozwiązanie - Poprawna hierarchia](diagrams/lsp_solution.png)
 
+### Jak uruchomić przykłady
+
+#### Kompilacja i uruchomienie z linii poleceń
+
+**Wersja "before" (naruszenie LSP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+javac solid/liskov_substitution/before/*.java
+java solid.liskov_substitution.before.LspDemo
+```
+
+**Wersja "after" (zgodnie z LSP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+javac solid/liskov_substitution/after/*.java
+java solid.liskov_substitution.after.LspDemo
+```
+
+#### Oczekiwane wyniki
+
+**Before (naruszenie LSP):**
+```
+Test 1: Rectangle
+Szerokość: 5, Wysokość: 4, Powierzchnia: 20
+✅ Test PASSED
+
+Test 2: Square jako Rectangle
+Szerokość: 4, Wysokość: 4, Powierzchnia: 16
+❌ Test FAILED - LSP violated!
+```
+
+**After (zgodnie z LSP):**
+```
+=== Test podstawialności ===
+Rectangle: Powierzchnia: 20.0
+Square: Powierzchnia: 25.0
+✅ Wszystkie figury są podstawialne
+✅ Każda ma własny, spójny kontrakt
+```
+
 ### Przykłady implementacji
 
 Zobacz kod w plikach:

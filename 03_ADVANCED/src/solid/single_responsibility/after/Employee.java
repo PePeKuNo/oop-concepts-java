@@ -1,48 +1,49 @@
 package solid.single_responsibility.after;
-}
-    }
-               '}';
-               ", experienceYears=" + experienceYears +
-               ", salary=" + salary +
-               ", position='" + position + '\'' +
-               "name='" + name + '\'' +
-        return "Employee{" +
-    public String toString() {
-    @Override
 
-    }
-        return experienceYears;
-    public int getExperienceYears() {
-
-    }
-        return salary;
-    public double getSalary() {
-
-    }
-        return position;
-    public String getPosition() {
-
-    }
-        return name;
-    public String getName() {
-
-    }
-        this.experienceYears = experienceYears;
-        this.salary = salary;
-        this.position = position;
-        this.name = name;
-    public Employee(String name, String position, double salary, int experienceYears) {
-
-    private final int experienceYears;
-    private final double salary;
-    private final String position;
-    private final String name;
-public class Employee {
- */
- * Jeden powód do zmiany: Zmiana struktury danych pracownika.
- * Jedyna odpowiedzialność: Reprezentacja danych pracownika.
- *
- * Model danych pracownika - zgodnie z zasadą SRP.
 /**
+ * Model danych pracownika - zgodnie z zasadą SRP.
+ *
+ * Jedyna odpowiedzialność: Reprezentacja danych pracownika.
+ * Jeden powód do zmiany: Zmiana struktury danych pracownika.
+ */
+public class Employee {
+    private final String name;
+    private final String position;
+    private final double salary;
+    private final int experienceYears;
+
+    public Employee(String name, String position, double salary, int experienceYears) {
+        this.name = name;
+        this.position = position;
+        this.salary = salary;
+        this.experienceYears = experienceYears;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+               "name='" + name + '\'' +
+               ", position='" + position + '\'' +
+               ", salary=" + salary +
+               ", experienceYears=" + experienceYears +
+               '}';
+    }
+}
 
 

@@ -69,6 +69,45 @@ public class UserService {
 
 ![Rozwiązanie - DIP](diagrams/dip_solution.png)
 
+### Jak uruchomić przykłady
+
+#### Kompilacja i uruchomienie z linii poleceń
+
+**Wersja "before" (naruszenie DIP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+javac solid/dependency_inversion/before/*.java
+# Brak demo w before - tylko naruszenie
+```
+
+**Wersja "after" (zgodnie z DIP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+javac solid/dependency_inversion/after/*.java
+java solid.dependency_inversion.after.UserServiceDemo
+```
+
+#### Oczekiwane wyniki
+
+**After (zgodnie z DIP):**
+```
+=== Używanie MySQL ===
+UserService: Saving user Jan Kowalski
+MySQLDatabase: Saving to MySQL: Jan Kowalski
+UserService: Retrieving user 123
+MySQL data for 123
+
+=== Używanie MongoDB ===
+UserService: Saving user Anna Nowak
+MongoDatabase: Saving to MongoDB: Anna Nowak
+UserService: Retrieving user 456
+MongoDB data for 456
+
+✅ UserService nie zależy od konkretnej bazy
+✅ Łatwa zmiana implementacji bazy danych
+✅ Możliwość mockowania w testach
+```
+
 ### Przykłady implementacji
 
 Zobacz kod w plikach:
