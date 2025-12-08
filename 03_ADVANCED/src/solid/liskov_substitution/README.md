@@ -105,8 +105,6 @@ void makeBirdFly(Bird bird) {
 }
 ```
 
-![Problem - Bird/Penguin](diagrams/lsp_bird_problem.png)
-
 ### Rozwiązanie - zastosowanie LSP
 
 #### Rozwiązanie 1: Kompozycja zamiast dziedziczenia
@@ -234,10 +232,6 @@ Zobacz kod w plikach:
 - [after/Shape.java](after/Shape.java) - Rozwiązanie przez interfejs
 - [after/Bird.java](after/Bird.java) - Poprawna hierarchia ptaków
 - [after/BirdDemo.java](after/BirdDemo.java) - Demonstracja
-
-### Diagram klas
-
-![Diagram klas - LSP](diagrams/lsp_class_diagram.png)
 
 ### Zasady projektowania zgodnego z LSP
 

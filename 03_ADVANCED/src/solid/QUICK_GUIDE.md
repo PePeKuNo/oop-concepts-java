@@ -144,40 +144,36 @@ java solid.dependency_inversion.after.UserServiceDemo
 
 ---
 
-## Uruchamianie wszystkich przykładów na raz
+## 🚀 Uruchamianie wszystkich przykładów na raz
 
-### Skrypt PowerShell do testowania wszystkich:
+### Gotowy skrypt automatyczny:
 
 ```powershell
-# Utwórz plik test-all-solid.ps1
-$examples = @(
-    @{Name="SRP Simple"; Path="solid"; File="SimpleSrpDemo"},
-    @{Name="OCP Simple"; Path="solid"; File="SimpleOcpDemo"},
-    @{Name="SRP After"; Path="solid/single_responsibility/after"; File="solid.single_responsibility.after.EmployeeDemo"},
-    @{Name="OCP After"; Path="solid/open_closed/after"; File="solid.open_closed.after.ShapeDemo"},
-    @{Name="LSP After"; Path="solid/liskov_substitution/after"; File="solid.liskov_substitution.after.LspDemo"},
-    @{Name="ISP After"; Path="solid/interface_segregation/after"; File="solid.interface_segregation.after.WorkerDemo"},
-    @{Name="DIP After"; Path="solid/dependency_inversion/after"; File="solid.dependency_inversion.after.UserServiceDemo"}
-)
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
 
-Set-Location "C:\home\gitHub\oop-concepts-java\03_ADVANCED\src"
+# Uruchom wszystkie testy SOLID
+.\test-all-solid.ps1
 
-foreach ($ex in $examples) {
-    Write-Host "`n========== $($ex.Name) ==========" -ForegroundColor Cyan
-    
-    if ($ex.Path -eq "solid") {
-        Set-Location "solid"
-        javac "$($ex.File).java" 2>&1 | Out-Null
-        java $ex.File
-        Set-Location ".."
-    } else {
-        javac "$($ex.Path)/*.java" 2>&1 | Out-Null
-        java $ex.File
-    }
-}
+# Lub pojedyncze zasady:
+.\solid\single_responsibility\run-srp-examples.ps1
+.\solid\open_closed\run-ocp-examples.ps1
+.\solid\liskov_substitution\run-lsp-examples.ps1
+.\solid\interface_segregation\run-isp-examples.ps1
+.\solid\dependency_inversion\run-dip-examples.ps1
 ```
 
-Uruchom: `.\test-all-solid.ps1`
+### Walidacja diagramów:
+
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\validate-puml-diagrams.ps1
+```
+
+Skrypt `test-all-solid.ps1` automatycznie:
+- Kompiluje wszystkie przykłady
+- Uruchamia demo dla każdej zasady
+- Pokazuje porównania "before" vs "after"
+- Czyści pliki `.class` po zakończeniu
 
 ---
 
@@ -200,32 +196,34 @@ java -jar junit-platform-console-standalone.jar `
 
 ---
 
-## Generowanie diagramów
+## 📊 Przeglądanie diagramów PlantUML
 
-### Wszystkie diagramy naraz:
+Wszystkie diagramy są w katalogach `diagrams/` jako pliki `.puml`.
+
+### Opcje przeglądania:
+
+1. **VS Code** - zainstaluj rozszerzenie PlantUML dla podglądu na żywo
+2. **PlantUML Web Server** - http://www.plantuml.com/plantuml/uml/
+3. **Lokalne generowanie PNG** (opcjonalnie):
 
 ```powershell
-# Zakładając że masz plantuml.jar
-cd 03_ADVANCED/src/solid
+# Pojedynczy diagram
+java -jar plantuml.jar solid/single_responsibility/diagrams/srp_violation.puml
 
-# SRP
-java -jar plantuml.jar single_responsibility/diagrams/*.puml
+# Wszystkie diagramy w zasadzie
+java -jar plantuml.jar solid/single_responsibility/diagrams/*.puml
 
-# OCP
-java -jar plantuml.jar open_closed/diagrams/*.puml
-
-# LSP
-java -jar plantuml.jar liskov_substitution/diagrams/*.puml
-
-# ISP
-java -jar plantuml.jar interface_segregation/diagrams/*.puml
-
-# DIP
-java -jar plantuml.jar dependency_inversion/diagrams/*.puml
-
-# Przegląd SOLID
-java -jar plantuml.jar diagrams/solid_overview.puml
+# Wszystkie diagramy SOLID
+java -jar plantuml.jar solid/**/diagrams/*.puml
 ```
+
+**Dostępne diagramy** (17 plików `.puml`):
+- **SRP**: srp_violation, srp_solution, srp_class_diagram
+- **OCP**: ocp_violation, ocp_solution, ocp_strategy, ocp_class_diagram
+- **LSP**: lsp_rectangle_problem, lsp_solution
+- **ISP**: isp_violation, isp_solution, isp_class_diagram
+- **DIP**: dip_violation, dip_solution, dip_class_diagram
+- **Przegląd**: solid_overview, solid_relationships
 
 ---
 

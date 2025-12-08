@@ -65,7 +65,49 @@ Total area: 227.30
 
 ## Uruchomienie pełnych przykładów z pakietami
 
-### Przykład: SRP - Before (naruszenie zasady)
+### Automatyczne uruchomienie za pomocą skryptów PowerShell
+
+Każdy katalog SOLID zawiera skrypt `run-*-examples.ps1` do automatycznego uruchamiania przykładów:
+
+**Single Responsibility Principle (SRP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\solid\single_responsibility\run-srp-examples.ps1
+```
+
+**Open/Closed Principle (OCP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\solid\open_closed\run-ocp-examples.ps1
+```
+
+**Liskov Substitution Principle (LSP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\solid\liskov_substitution\run-lsp-examples.ps1
+```
+
+**Interface Segregation Principle (ISP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\solid\interface_segregation\run-isp-examples.ps1
+```
+
+**Dependency Inversion Principle (DIP):**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\solid\dependency_inversion\run-dip-examples.ps1
+```
+
+**Wszystkie testy naraz:**
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\test-all-solid.ps1
+```
+
+### Ręczna kompilacja i uruchomienie
+
+#### Przykład: SRP - Before (naruszenie zasady)
 
 ```powershell
 cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
@@ -137,7 +179,26 @@ java -jar junit-platform-console-standalone.jar `
   --scan-class-path
 ```
 
-## Generowanie diagramów PlantUML
+## Walidacja i przeglądanie diagramów PlantUML
+
+### Walidacja składni wszystkich diagramów:
+
+```powershell
+cd C:\home\gitHub\oop-concepts-java\03_ADVANCED\src
+.\validate-puml-diagrams.ps1
+```
+
+Ten skrypt sprawdzi wszystkie pliki `.puml` w katalogu `solid` i zweryfikuje ich poprawność składniową.
+
+### Przeglądanie diagramów
+
+Diagramy PlantUML (pliki `.puml`) można przeglądać na kilka sposobów:
+
+1. **VS Code z rozszerzeniem PlantUML** - podgląd na żywo
+2. **PlantUML Web Server** - http://www.plantuml.com/plantuml/
+3. **Lokalna instalacja PlantUML** - generowanie plików PNG
+
+### Generowanie diagramów PlantUML (opcjonalne)
 
 ### Wymagania:
 - PlantUML (plik .jar)

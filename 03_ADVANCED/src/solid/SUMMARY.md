@@ -4,9 +4,14 @@
 
 - **Pliki Java**: 42+
 - **Pliki Markdown**: 8
-- **Diagramy PlantUML**: 16
-- **Skrypty**: 1
+- **Diagramy PlantUML**: 17 (wszystkie zwalidowane ✅)
+- **Skrypty PowerShell**: 7 (run-*-examples.ps1 + test-all-solid.ps1 + validate-puml-diagrams.ps1)
 - **Katalogi**: 22
+
+**Status diagramów:**
+- ✅ Wszystkie diagramy `.puml` są poprawne składniowo
+- ✅ Diagramy mogą być przeglądane w VS Code, PlantUML Web Server lub generowane do PNG
+- ✅ Zaktualizowane odniesienia w plikach README.md (linki do `.puml` zamiast `.png`)
 
 ## 📁 Szczegółowa struktura plików
 
@@ -148,8 +153,16 @@ solid/
 
 ## 🔧 Narzędzia i skrypty
 
-### Katalog główny projektu
-- `test-all-solid.ps1` - Skrypt PowerShell do automatycznego testowania wszystkich przykładów
+### Skrypty PowerShell dla poszczególnych zasad
+- `single_responsibility/run-srp-examples.ps1` - Automatyczne uruchomienie przykładów SRP
+- `open_closed/run-ocp-examples.ps1` - Automatyczne uruchomienie przykładów OCP
+- `liskov_substitution/run-lsp-examples.ps1` - Automatyczne uruchomienie przykładów LSP
+- `interface_segregation/run-isp-examples.ps1` - Automatyczne uruchomienie przykładów ISP
+- `dependency_inversion/run-dip-examples.ps1` - Automatyczne uruchomienie przykładów DIP
+
+### Skrypty główne
+- `test-all-solid.ps1` - Kompletny test wszystkich zasad SOLID
+- `validate-puml-diagrams.ps1` - Walidacja składni wszystkich diagramów PlantUML
 
 ---
 

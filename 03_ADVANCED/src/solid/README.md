@@ -234,37 +234,65 @@ zasada/
 
 ## Uruchamianie przykładów
 
-### Kompilacja i uruchomienie pojedynczego przykładu:
+### Szybki start - Proste przykłady (bez pakietów):
 
 ```powershell
-# Kompilacja
-javac solid/single_responsibility/before/EmployeeDemo.java
+# Single Responsibility Principle
+cd 03_ADVANCED/src
+javac solid/SimpleSrpDemo.java
+java solid.SimpleSrpDemo
 
-# Uruchomienie
-java solid.single_responsibility.before.EmployeeDemo
+# Open/Closed Principle
+javac solid/SimpleOcpDemo.java
+java solid.SimpleOcpDemo
 ```
 
-### Kompilacja wszystkich przykładów:
+### Automatyczne uruchomienie za pomocą skryptów PowerShell:
+
+Każda zasada ma dedykowany skrypt `run-*-examples.ps1`:
 
 ```powershell
 # Z katalogu 03_ADVANCED/src/
-javac solid/**/*.java
+.\solid\single_responsibility\run-srp-examples.ps1
+.\solid\open_closed\run-ocp-examples.ps1
+.\solid\liskov_substitution\run-lsp-examples.ps1
+.\solid\interface_segregation\run-isp-examples.ps1
+.\solid\dependency_inversion\run-dip-examples.ps1
+
+# Lub wszystkie testy naraz:
+.\test-all-solid.ps1
 ```
 
-## Generowanie diagramów z PlantUML
-
-### Wymagania:
-- PlantUML
-- Graphviz (dla niektórych typów diagramów)
-
-### Generowanie PNG z pliku .puml:
+### Ręczne uruchomienie pojedynczego przykładu:
 
 ```powershell
-# Pojedynczy diagram
-java -jar plantuml.jar solid/single_responsibility/diagrams/srp_violation.puml
+# Kompilacja i uruchomienie "before" (naruszenie)
+cd 03_ADVANCED/src
+javac solid/single_responsibility/before/*.java
+java solid.single_responsibility.before.EmployeeDemo
 
-# Wszystkie diagramy w katalogu
-java -jar plantuml.jar solid/**/diagrams/*.puml
+# Kompilacja i uruchomienie "after" (zgodność)
+javac solid/single_responsibility/after/*.java
+java solid.single_responsibility.after.EmployeeDemo
+```
+
+**Zobacz szczegóły**: [INSTRUKCJA.md](INSTRUKCJA.md) | [QUICK_GUIDE.md](QUICK_GUIDE.md)
+
+## Diagramy PlantUML
+
+Wszystkie diagramy są dostępne jako pliki `.puml` w katalogach `diagrams/`.
+
+### Przeglądanie diagramów:
+
+1. **VS Code** - zainstaluj rozszerzenie PlantUML dla podglądu na żywo
+2. **PlantUML Web Server** - wklej kod na http://www.plantuml.com/plantuml/
+3. **Lokalna instalacja** - generuj PNG za pomocą `java -jar plantuml.jar`
+
+### Walidacja składni diagramów:
+
+```powershell
+cd 03_ADVANCED/src
+.\validate-puml-diagrams.ps1
 ```
 
 ## Checklist - Czy mój kod jest SOLID?

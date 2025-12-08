@@ -56,7 +56,7 @@ public class Employee {
    - Zmiana sposobu zapisu danych
    - Zmiana formatu raportów
 3. **Trudne testowanie** - wymaga mockowania bazy danych i innych zależności
-4. **Niskie ponowne wykorzystanie** - nie można użyć samej logiki obliczania płacy
+- Niskie ponowne wykorzystanie** - nie można użyć samej logiki obliczania płacy
 
 ![Problem - naruszenie SRP](diagrams/srp_violation.png)
 
