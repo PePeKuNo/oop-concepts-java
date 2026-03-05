@@ -75,65 +75,95 @@ java -jar plantuml.jar "introduction/**/diagrams/*.puml"
 
 ```
 introduction/
-├── README.md                         ← ten plik
-├── run-all-examples.ps1              ← uruchomienie wszystkich modułów
+├── README.md                              ← ten plik
+├── run-all-examples.ps1                   ← uruchamia wszystkie moduły
+├── run-tests.ps1                          ← uruchamia wszystkie testy JUnit
 │
 ├── classes/
-│   ├── README.md                     ← materiały wykładowe
+│   ├── README.md                          ← materiały wykładowe: klasy i obiekty
 │   ├── run-classes-examples.ps1
 │   ├── basic/
-│   │   ├── Dog.java                  ← prosta klasa z polami i metodami
-│   │   └── ClassesDemo.java          ← demo tworzenia obiektów
+│   │   ├── Dog.java                       ← prosta klasa z polami i metodami
+│   │   └── ClassesDemo.java               ← demo tworzenia obiektów
 │   ├── advanced/
-│   │   ├── BankAccount.java          ← klasa z enkapsulacją
+│   │   ├── BankAccount.java               ← klasa z walidacją i enkapsulacją
 │   │   └── BankAccountDemo.java
 │   └── diagrams/
-│       ├── class_anatomy.puml
-│       ├── object_vs_class.puml
-│       └── memory_model.puml
+│       ├── class_anatomy.puml / .png
+│       ├── object_vs_class.puml / .png
+│       └── memory_model.puml / .png
 │
 ├── fields_and_methods/
-│   ├── README.md
+│   ├── README.md                          ← materiały wykładowe: pola i metody
 │   ├── run-fields-examples.ps1
 │   ├── before/
-│   │   ├── Counter.java              ← anty-wzorzec: publiczne pola
+│   │   ├── Counter.java                   ← anty-wzorzec: publiczne pola
 │   │   └── CounterBeforeDemo.java
 │   ├── after/
-│   │   ├── Counter.java              ← enkapsulacja, static
-│   │   ├── MathUtils.java            ← klasa utility (static methods)
+│   │   ├── Counter.java                   ← enkapsulacja, pole statyczne
+│   │   ├── MathUtils.java                 ← metody statyczne (utility class)
 │   │   └── FieldsMethodsDemo.java
+│   ├── tests/
+│   │   └── CounterAndMathTest.java        ← JUnit 5: 46 testów
 │   └── diagrams/
-│       ├── access_modifiers.puml
-│       ├── static_vs_instance.puml
-│       └── encapsulation.puml
+│       ├── access_modifiers.puml / .png
+│       ├── static_vs_instance.puml / .png
+│       └── encapsulation.puml / .png
 │
 ├── object_lifecycle/
-│   ├── README.md
+│   ├── README.md                          ← materiały wykładowe: cykl życia
 │   ├── run-lifecycle-examples.ps1
 │   ├── basic/
-│   │   ├── Person.java               ← konstruktory, bloki init
+│   │   ├── Person.java                    ← konstruktory, bloki init, walidacja
 │   │   └── PersonDemo.java
 │   ├── advanced/
-│   │   ├── GcDemo.java               ← Garbage Collector, WeakReference
-│   │   └── ResourceHolder.java       ← AutoCloseable, try-with-resources
+│   │   ├── GcDemo.java                    ← Garbage Collector, WeakReference
+│   │   └── ResourceHolder.java            ← AutoCloseable, try-with-resources
+│   ├── copies/
+│   │   ├── CopyDemo.java                  ← kopia płytka vs głęboka
+│   │   └── PrototypeDemo.java             ← wzorzec Prototype + CharacterRegistry
+│   ├── tests/
+│   │   ├── PersonTest.java                ← JUnit 5: 13 testów
+│   │   └── CopyTest.java                  ← JUnit 5: 8 testów
 │   └── diagrams/
-│       ├── constructors.puml
-│       ├── object_lifecycle.puml
-│       └── gc_generations.puml
+│       ├── constructors.puml / .png
+│       ├── object_lifecycle.puml / .png
+│       ├── gc_generations.puml / .png
+│       ├── shallow_vs_deep.puml / .png    ← kopia płytka vs głęboka
+│       └── prototype_pattern.puml / .png  ← wzorzec Prototype
 │
-└── control_flow/
-    ├── README.md
-    ├── run-controlflow-examples.ps1
-    ├── examples/
-    │   ├── ConditionalsDemo.java     ← if/else, switch klasyczny, switch expression
-    │   ├── LoopsDemo.java            ← for, while, do-while, for-each, break
-    │   └── SwitchPatternDemo.java    ← Pattern matching Java 21
-    ├── comparison/
-    │   ├── examples.c                ← C — tylko do wglądu
-    │   ├── examples.py               ← Python — tylko do wglądu
-    │   └── COMPARISON_TABLE.md       ← tabela porównawcza Java/C/Python
-    └── diagrams/
-        ├── control_flow_overview.puml
-        └── switch_evolution.puml
+├── control_flow/
+│   ├── README.md                          ← materiały wykładowe: sterowanie
+│   ├── run-controlflow-examples.ps1
+│   ├── examples/
+│   │   ├── ConditionalsDemo.java          ← if/else, switch klasyczny i expression
+│   │   ├── LoopsDemo.java                 ← for, while, do-while, for-each, break
+│   │   └── SwitchPatternDemo.java         ← Pattern matching Java 21
+│   ├── comparison/
+│   │   ├── examples.c                     ← C — tylko do wglądu
+│   │   ├── examples.py                    ← Python — tylko do wglądu
+│   │   └── COMPARISON_TABLE.md            ← tabela Java vs C vs Python
+│   └── diagrams/
+│       ├── control_flow_overview.puml / .png
+│       └── switch_evolution.puml / .png
+│
+├── tdd/
+│   ├── README.md                          ← teoria TDD, JUnit 5, cykl R-G-R
+│   ├── src/
+│   │   └── Stack.java                     ← generyczny stos — implementacja TDD
+│   └── tests/
+│       └── StackTest.java                 ← JUnit 5: 19 testów (6 cykli R-G-R)
+│
+└── exercises/
+    ├── README.md                          ← opisy zadań dla studentów
+    ├── tasks/
+    │   ├── RectangleTask.java             ← zad. 1: enkapsulacja, static (⭐)
+    │   ├── TeamCopyTask.java              ← zad. 2: głęboka kopia (⭐⭐)
+    │   ├── PrototypeConfigTask.java       ← zad. 3: wzorzec Prototype (⭐⭐⭐)
+    │   └── CalcTask.java                  ← zad. 4: TDD — kalkulator (⭐⭐)
+    └── solutions/
+        └── Solutions.java                 ← wzorcowe rozwiązania zadań 1–4
 ```
+
+
 
