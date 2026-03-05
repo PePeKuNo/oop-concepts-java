@@ -29,10 +29,10 @@ class Counter {
 
 note right of Counter
   <b>Legenda:</b>
-  <color:green>+</color> = <b>public</b>   — dostępny wszędzie
-  <color:red>-</color> = <b>private</b>  — tylko w tej klasie
-  <color:blue>#</color> = <b>protected</b>— klasa i podklasy
-  ~ = <b>package</b>  — tylko w pakiecie
+  <color:green>+</color> = <b>public</b>   - dostepny wszedzie
+  <color:red>-</color> = <b>private</b>  - tylko w tej klasie
+  <color:blue>#</color> = <b>protected</b>- klasa i podklasy
+  ~ = <b>package</b>  - tylko w pakiecie
 
   <b>static</b> = pole/metoda KLASY
   (nie instancji)

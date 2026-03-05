@@ -1,5 +1,5 @@
 @startuml gc_generations
-title Heap JVM — Generacyjny Garbage Collector
+title Heap JVM - Generacyjny Garbage Collector
 
 skinparam backgroundColor #FAFAFA
 skinparam rectangle {
@@ -9,46 +9,29 @@ skinparam rectangle {
 rectangle "JVM Heap" as heap #LightYellow {
 
     rectangle "Young Generation" as young #LightBlue {
-        rectangle "Eden Space" as eden #AliceBlue [
-            Nowe obiekty
-            tworzone tutaj
-            (new Foo())
-        ]
-        rectangle "Survivor 0\n(S0)" as s0 #LightCyan [
-            Przeżyły\nMinor GC #1
-        ]
-        rectangle "Survivor 1\n(S1)" as s1 #LightCyan [
-            Przeżyły\nMinor GC #2
-        ]
+        rectangle "Eden Space\nNowe obiekty\ntworzone tutaj\n(new Foo())" as eden #AliceBlue
+        rectangle "Survivor 0 (S0)\nPrzezyly\nMinor GC #1" as s0 #LightCyan
+        rectangle "Survivor 1 (S1)\nPrzezyly\nMinor GC #2" as s1 #LightCyan
     }
 
-    rectangle "Old Generation\n(Tenured)" as old #LightGreen [
-        Obiekty długożyjące
-        (przeżyły wiele Minor GC)
-        Np. cache, singletons
-    ]
+    rectangle "Old Generation (Tenured)\nObiekty dlugozyjace\n(przezyly wiele Minor GC)\nNp. cache, singletons" as old #LightGreen
 
-    rectangle "Metaspace\n(Java 8+)" as meta #LightPink [
-        Metadane klas
-        (dawniej PermGen)
-        Nie ma stałego limitu
-    ]
+    rectangle "Metaspace (Java 8+)\nMetadane klas\n(dawniej PermGen)\nBrak stalego limitu" as meta #LightPink
 }
 
 eden --> s0 : Minor GC\n(Young GC)
 s0   --> s1 : kolejny\nMinor GC
-s1   --> old : Promotion\n(wiek > próg)
+s1   --> old : Promotion\n(wiek > prog)
 old  --> old : Major GC\n(Full GC)
 
 note bottom of young
-  <b>Minor GC</b> — szybki, usuwa martwe obiekty z Young Gen
-  Większość obiektów jest krótkotrwała ("die young")
+  <b>Minor GC</b> - szybki, usuwa martwe obiekty z Young Gen
+  Wiekszosc obiektow jest krotkotrwala ("die young")
 end note
 
 note bottom of old
-  <b>Major/Full GC</b> — wolniejszy, "Stop the World"
-  Uruchamiany gdy Old Gen zapełniony
+  <b>Major/Full GC</b> - wolniejszy, "Stop the World"
+  Uruchamiany gdy Old Gen zapelniony
 end note
 
 @enduml
-

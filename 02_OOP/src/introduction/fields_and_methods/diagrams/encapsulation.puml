@@ -17,8 +17,8 @@ package "BEFORE (anty-wzorzec)" #FFE0E0 {
     class "CounterBeforeDemo" as demoBefore
     demoBefore --> CounterBefore
     note on link
-        counter.count = -999; ✓ (dozwolone!)
-        counter.maxValue = -50; ✓ (dozwolone!)
+        counter.count = -999; OK (dozwolone!)
+        counter.maxValue = -50; OK (dozwolone!)
     end note
 }
 
@@ -42,7 +42,7 @@ package "AFTER (enkapsulacja)" #E0FFE0 {
     class "FieldsMethodsDemo" as demoAfter
     demoAfter --> CounterAfter
     note on link
-        counter.count = -999; ✗ (błąd kompilacji!)
+        counter.count = -999; BLAD KOMPILACJI!
         // tylko metody publiczne
     end note
 }
