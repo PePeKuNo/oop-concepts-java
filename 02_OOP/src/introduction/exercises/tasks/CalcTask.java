@@ -1,58 +1,56 @@
 package introduction.exercises.tasks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * ZADANIE 4: TDD — Kalkulator w stylu Red-Green-Refactor
- * ========================================================
- * Poziom: Średni — oparty na module "tdd"
- *
- * POLECENIE:
- *   Zaimplementuj klasę Calculator metodą TDD.
- *   NAJPIERW napisz testy (CalcTest.java), POTEM implementację.
- *
- * WYMAGANIA FUNKCJONALNE:
- *
- *   Klasa Calculator:
- *     - add(double a, double b) : double
- *     - subtract(double a, double b) : double
- *     - multiply(double a, double b) : double
- *     - divide(double a, double b) : double
- *         → rzuca ArithmeticException dla b == 0
- *     - power(double base, int exponent) : double
- *         → obsługuje ujemne wykładniki: power(2, -1) = 0.5
- *     - sqrt(double n) : double
- *         → rzuca IllegalArgumentException dla n < 0
- *     - getHistory() : List<String>
- *         → każda operacja dodawana jako "add(2,3)=5.0"
- *     - clearHistory() : void
- *
- * KOLEJNOŚĆ TDD (cykle):
- *   Cykl 1: add — proste przypadki (0+0, 2+3, -1+1)
- *   Cykl 2: subtract
- *   Cykl 3: multiply — w tym 0*n=0
- *   Cykl 4: divide — w tym wyjątek dla dzielenia przez 0
- *   Cykl 5: power — w tym ujemne wykładniki i exponent=0
- *   Cykl 6: sqrt — w tym wyjątek dla ujemnej
- *   Cykl 7: history — rejestrowanie operacji
- *
- * WSKAZÓWKA TDD:
- *   1. Napisz JEDEN failing test (RED)
- *   2. Zaimplementuj MINIMUM kodu aby przeszedł (GREEN)
- *   3. Popraw kod bez zmiany testów (REFACTOR)
- *   4. Powtórz od 1
- *
- * Plik do wypełnienia: CalcTask.java (implementacja Calculator)
- * Plik testów:         CalcTest.java (napisz sam!)
+ * ZADANIE 4: TDD — Kalkulator
  */
 public class CalcTask {
 
-    // TODO: Zaimplementuj klasę Calculator
-
     public static class Calculator {
-        // TODO: historia operacji (List<String>)
+        private final List<String> history = new ArrayList<>();
 
-        // TODO: add, subtract, multiply, divide, power, sqrt
+        public double add(double a, double b) {
+            double result = a + b;
+            history.add("add(" + a + "," + b + ")=" + result);
+            return result;
+        }
 
-        // TODO: getHistory(), clearHistory()
+        public double subtract(double a, double b) {
+            double result = a - b;
+            history.add("subtract(" + a + "," + b + ")=" + result);
+            return result;
+        }
+
+        public double multiply(double a, double b) {
+            double result = a * b;
+            history.add("multiply(" + a + "," + b + ")=" + result);
+            return result;
+        }
+
+        public double divide(double a, double b) {
+            if (b == 0) throw new ArithmeticException("Division by zero");
+            double result = a / b;
+            history.add("divide(" + a + "," + b + ")=" + result);
+            return result;
+        }
+
+        public double power(double base, int exponent) {
+            double result = Math.pow(base, exponent);
+            history.add("power(" + base + "," + exponent + ")=" + result);
+            return result;
+        }
+
+        public double sqrt(double n) {
+            if (n < 0) throw new IllegalArgumentException("Cannot sqrt negative number: " + n);
+            double result = Math.sqrt(n);
+            history.add("sqrt(" + n + ")=" + result);
+            return result;
+        }
+
+        public List<String> getHistory()  { return new ArrayList<>(history); }
+        public void clearHistory()        { history.clear(); }
     }
 
     public static void main(String[] args) {
@@ -62,7 +60,5 @@ public class CalcTask {
         System.out.println(calc.power(2, 10));    // 1024.0
         System.out.println(calc.sqrt(16));        // 4.0
         System.out.println(calc.getHistory());
-        // [add(2.0,3.0)=5.0, divide(10.0,4.0)=2.5, power(2.0,10)=1024.0, sqrt(16.0)=4.0]
     }
 }
-

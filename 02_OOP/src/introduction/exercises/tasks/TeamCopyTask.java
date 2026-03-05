@@ -1,61 +1,84 @@
 package introduction.exercises.tasks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * ZADANIE 2: Głęboka kopia klasy TeamMember
- * ==========================================
- * Poziom: Średni — oparty na module "object_lifecycle/copies"
- *
- * POLECENIE:
- *   Zaimplementuj klasy TeamMember i Team tak, aby kopia Teamu
- *   była GŁĘBOKA (deep copy) — modyfikacja kopii nie zmienia oryginału.
- *
- * WYMAGANIA:
- *
- *   Klasa TeamMember:
- *     - Pola: String name, String role, List<String> skills (mutowalna lista!)
- *     - Konstruktor pełny + konstruktor kopiujący (deep copy!)
- *     - Metody: addSkill(String), getSkills(), getName(), getRole()
- *
- *   Klasa Team:
- *     - Pola: String teamName, List<TeamMember> members
- *     - Konstruktor(String teamName)
- *     - addMember(TeamMember)
- *     - deepCopy() — głęboka kopia Teamu (nowy Team, nowe TeamMember, nowe listy skills)
- *     - getMembers(), getTeamName(), size()
- *
- * ZACHOWANIE:
- *   Team original = new Team("Alpha");
- *   original.addMember(new TeamMember("Anna", "Dev", List.of("Java", "SQL")));
- *   Team copy = original.deepCopy();
- *   copy.getMembers().get(0).addSkill("Python");
- *   // original.getMembers().get(0).getSkills() NIE zawiera "Python"!
- *
- * TESTY (w TeamTest.java):
- *   - Sprawdzają głębokość kopii
- *   - Sprawdzają niezależność list skills
- *   - Sprawdzają niezależność listy members
- *
- * WSKAZÓWKI:
- *   - Patrz: CopyDemo.java — PersonDeep.deepCopy()
- *   - Użyj: new ArrayList<>(otherList) dla kopii listy
- *   - Konstruktor kopiujący TeamMember powinien kopiować listę skills!
  */
 public class TeamCopyTask {
 
-    // TODO: Zaimplementuj klasy TeamMember i Team
-
     public static class TeamMember {
-        // TODO
+        private String name;
+        private String role;
+        private List<String> skills;
+
+        public TeamMember(String name, String role, List<String> skills) {
+            this.name = name;
+            this.role = role;
+            this.skills = new ArrayList<>(skills);
+        }
+
+        // Copy constructor — deep copy
+        public TeamMember(TeamMember other) {
+            this.name = other.name;
+            this.role = other.role;
+            this.skills = new ArrayList<>(other.skills);
+        }
+
+        public void addSkill(String skill) { skills.add(skill); }
+        public List<String> getSkills()    { return skills; }
+        public String getName()            { return name; }
+        public String getRole()            { return role; }
+
+        @Override
+        public String toString() {
+            return name + " (" + role + ") skills=" + skills;
+        }
     }
 
     public static class Team {
-        // TODO
+        private String teamName;
+        private List<TeamMember> members;
+
+        public Team(String teamName) {
+            this.teamName = teamName;
+            this.members = new ArrayList<>();
+        }
+
+        public void addMember(TeamMember member) {
+            members.add(member);
+        }
+
+        public Team deepCopy() {
+            Team copy = new Team(this.teamName);
+            for (TeamMember m : members) {
+                copy.members.add(new TeamMember(m));
+            }
+            return copy;
+        }
+
+        public List<TeamMember> getMembers() { return members; }
+        public String getTeamName()          { return teamName; }
+        public int size()                    { return members.size(); }
+
+        @Override
+        public String toString() {
+            return "Team[" + teamName + ", members=" + members + "]";
+        }
     }
 
     public static void main(String[] args) {
-        // TODO: Przetestuj implementację
-        // Stwórz team, dodaj członków z umiejętnościami
-        // Zrób deepCopy, zmodyfikuj kopię, sprawdź że oryginał niezmieniony
+        Team original = new Team("Alpha");
+        original.addMember(new TeamMember("Anna", "Dev", new ArrayList<>(List.of("Java", "SQL"))));
+        original.addMember(new TeamMember("Bob",  "QA",  new ArrayList<>(List.of("Selenium"))));
+
+        Team copy = original.deepCopy();
+        copy.getMembers().get(0).addSkill("Python");
+        copy.addMember(new TeamMember("Charlie", "DevOps", new ArrayList<>(List.of("Docker"))));
+
+        System.out.println("Original: " + original);
+        System.out.println("Copy:     " + copy);
+        // Anna in original should still have [Java, SQL]
     }
 }
-

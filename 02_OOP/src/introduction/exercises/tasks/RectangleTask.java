@@ -2,57 +2,49 @@ package introduction.exercises.tasks;
 
 /**
  * ZADANIE 1: Klasa Rectangle z walidacją i metodami geometrycznymi
- * ================================================================
- * Poziom: Podstawowy — oparty na module "classes"
- *
- * POLECENIE:
- *   Zaimplementuj klasę Rectangle reprezentującą prostokąt.
- *   Stosuj enkapsulację (pola prywatne, gettery, settery z walidacją).
- *
- * WYMAGANIA:
- *   1. Pola prywatne: width (double), height (double)
- *   2. Konstruktor z walidacją (width > 0 oraz height > 0)
- *   3. Gettery dla width i height
- *   4. Settery z walidacją (IllegalArgumentException dla <= 0)
- *   5. Metody:
- *       - double area()      → pole powierzchni
- *       - double perimeter() → obwód
- *       - boolean isSquare() → czy prostokąt jest kwadratem (width == height)
- *       - Rectangle scale(double factor) → zwraca NOWY Rectangle przeskalowany
- *   6. Poprawna metoda toString()
- *   7. Pole statyczne: int instanceCount (ile prostokątów utworzono)
- *
- * TESTY (w RectangleTest.java):
- *   - Weryfikują wszystkie wymagania powyżej
- *   - Sprawdzają walidację (wyjątki)
- *   - Sprawdzają scale() — czy tworzy nowy obiekt
- *
- * WSKAZÓWKI:
- *   - Patrz: Counter.java (after/) jako wzorzec enkapsulacji i static
- *   - Patrz: BankAccount.java jako wzorzec walidacji
  */
 public class RectangleTask {
 
-    // TODO: Zaimplementuj klasę Rectangle poniżej
-
     public static class Rectangle {
-        // TODO: pola prywatne
-        // TODO: pole statyczne instanceCount
+        private double width;
+        private double height;
+        public static int instanceCount = 0;
 
-        // TODO: Konstruktor(double width, double height)
+        public Rectangle(double width, double height) {
+            if (width <= 0) throw new IllegalArgumentException("Width must be > 0, got: " + width);
+            if (height <= 0) throw new IllegalArgumentException("Height must be > 0, got: " + height);
+            this.width = width;
+            this.height = height;
+            instanceCount++;
+        }
 
-        // TODO: gettery
+        public double getWidth()  { return width; }
+        public double getHeight() { return height; }
 
-        // TODO: settery z walidacją
+        public void setWidth(double width) {
+            if (width <= 0) throw new IllegalArgumentException("Width must be > 0");
+            this.width = width;
+        }
+        public void setHeight(double height) {
+            if (height <= 0) throw new IllegalArgumentException("Height must be > 0");
+            this.height = height;
+        }
 
-        // TODO: area(), perimeter(), isSquare()
+        public double area()      { return width * height; }
+        public double perimeter() { return 2 * (width + height); }
+        public boolean isSquare() { return Math.abs(width - height) < 1e-9; }
 
-        // TODO: scale(double factor) — zwraca nowy Rectangle
+        public Rectangle scale(double factor) {
+            if (factor <= 0) throw new IllegalArgumentException("Factor must be > 0");
+            return new Rectangle(width * factor, height * factor);
+        }
 
-        // TODO: toString()
+        @Override
+        public String toString() {
+            return "Rectangle(" + width + " x " + height + ")";
+        }
     }
 
-    // Prosta weryfikacja ręczna — usuń gdy napiszesz testy JUnit
     public static void main(String[] args) {
         Rectangle r1 = new Rectangle(4.0, 3.0);
         System.out.println("Rectangle: " + r1);
@@ -69,4 +61,3 @@ public class RectangleTask {
         System.out.println("Instances: " + Rectangle.instanceCount); // 3
     }
 }
-
